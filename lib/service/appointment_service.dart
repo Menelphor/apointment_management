@@ -1,10 +1,20 @@
+import 'package:apointment_management/models/appointment.dart';
 import 'package:apointment_management/models/appointment_state.dart';
 import 'package:graphql/client.dart';
 
-
 class AppointmentService {
-  AppointmentService(this.graphqlClient);
-  final GraphQLClient graphqlClient;
+  AppointmentService();
+  // final GraphQLClient graphqlClient;
+  final graphQLClient = GraphQLClient(
+    cache: GraphQLCache(store: InMemoryStore()),
+    link: HttpLink(
+      "https://nameless-brook-400132.eu-central-1.aws.cloud.dgraph.io/graphql",
+      defaultHeaders: {
+        "Dg-Auth": "Mjg4N2I1N2QyODgyMTViMDcyZTYyNzQ1OGVmMDA2ZGE=",
+      },
+    ),
+  );
+  // appointmentService = AppointmentService(graphQLClient);
 
   static const allApointments = '''
 query GetAppointments(\$offset: Int, \$first: Int) {
@@ -60,23 +70,31 @@ mutation MyMutation {
   updateAppointment(input: {filter: {id: \$id}, set: {additionalInformation: \$additionalInformation, appointmentState: \$appointmentState}}) {
     appointment {
       id
-      date
-      appointmentState
-      additionalInformation
-      durationMinutes
     }
   }
 }
 ''';
 
-  Future<QueryResult<Object?>> getAppointments(int offset) async =>
-      await graphqlClient.query(QueryOptions(
-        document: gql(allApointments),
-        variables: {"offset": offset, "first": 10},
-      ));
+  Future<List<Appointment>> getAppointments(int offset) async {
+    final result = await graphQLClient.query(QueryOptions(
+      document: gql(allApointments),
+      variables: {"offset": offset, "first": 10},
+    ));
+
+    final resultData = result.data?["queryAppointment"];
+    if (resultData != null && resultData is List) {
+      return resultData.map((e) {
+        if (e is Map<String, dynamic>) {
+          return Appointment.fromJson(e);
+        }
+        throw const FormatException();
+      }).toList();
+    }
+    throw const FormatException();
+  }
 
   ObservableQuery<Object?> watchAppointmentDetail(String id) =>
-      graphqlClient.watchQuery(
+      graphQLClient.watchQuery(
         WatchQueryOptions(
           document: gql(appointmentDetail),
           variables: {"id": id},
@@ -88,7 +106,7 @@ mutation MyMutation {
     AppointmentState state,
     String? additionalInformation,
   ) async {
-    graphqlClient.mutate(
+    graphQLClient.mutate(
       MutationOptions(
         document: gql(mutateAppointment),
         variables: {

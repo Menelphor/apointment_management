@@ -1,0 +1,1 @@
+enum AppointmentsOverviewEvent { initial, fetchMore }

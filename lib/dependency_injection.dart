@@ -2,14 +2,14 @@ import 'package:apointment_management/service/appointment_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:graphql/client.dart';
 
+
 import 'config/base_config.dart';
 
 class DependencyInjection {
-  static void registerSingletons() {
-    GetIt.I.registerSingletonAsync<HiveStore>(() => HiveStore.open());
-    GetIt.I.registerSingletonWithDependencies<GraphQLClient>(
-      () => GraphQLClient(
-        cache: GraphQLCache(store: GetIt.I.get()),
+  static  registerSingletons() {
+    GetIt.I.registerSingleton<GraphQLClient>(
+       GraphQLClient(
+        cache: GraphQLCache(store: InMemoryStore()),
         link: HttpLink(
           appointmentGraphqlUrl,
           defaultHeaders: {
@@ -17,17 +17,12 @@ class DependencyInjection {
           },
         ),
       ),
-      dependsOn: [HiveStore],
     );
-    GetIt.I.registerSingletonWithDependencies<AppointmentService>(
-      () => AppointmentService(GetIt.I.get()),
-      dependsOn: [GraphQLClient],
-    );
-  }
 
-  static Future isReady() => Future.wait([
-        GetIt.I.isReady<HiveStore>(),
-        GetIt.I.isReady<GraphQLClient>(),
-        GetIt.I.isReady<AppointmentService>(),
-      ]);
+    GetIt.I.registerSingleton<AppointmentService>(
+       AppointmentService(GetIt.I.get()),
+    );
+
+
+  }
 }
