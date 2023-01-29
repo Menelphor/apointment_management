@@ -1,6 +1,11 @@
+import 'package:apointment_management/dependency_injection.dart';
 import 'package:flutter/material.dart';
 
+import 'config/base_config.dart';
+
 void main() async {
+  DependencyInjection.registerSingletons;
+  await DependencyInjection.isReady();
   runApp(const MyApp());
 }
 
@@ -31,6 +36,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Column(
+        children: const [
+          Text(appointmentGraphqlUrl),
+          Text(appointmentApiKey),
+        ],
+      ),
+    );
   }
 }
