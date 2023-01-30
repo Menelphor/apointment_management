@@ -1,6 +1,7 @@
 import 'package:appointment_management/models/appointment.dart';
 import 'package:appointment_management/models/appointment_state.dart';
 import 'package:appointment_management/models/company.dart';
+import 'package:appointment_management/utils/date_parsing_extension.dart';
 import 'package:graphql/client.dart';
 
 class AppointmentService {
@@ -8,35 +9,8 @@ class AppointmentService {
   final GraphQLClient graphQLClient;
 
   static const allAppointmentsQuery = '''
-query GetAppointments(\$offset: Int, \$first: Int) {
-  queryAppointment(
-    first: \$first
-    order: {asc: date}
-    filter: {date: {ge: "2023-01-30"}}
-    offset: \$offset
-  ) {
-    appointmentState
-    company {
-      city
-      contact
-      country
-      houseNumber
-      id
-      name
-      phoneNumber
-      postCode
-      street
-    }
-    date
-    durationMinutes
-    id
-  }
-}
-''';
-
-  static const appointmentDetail = '''
-subscription AppointmentSubscription {
-  getAppointment(id: \$id) {
+query GetAppointments(\$offset: Int, \$first: Int, \$date: DateTime) {
+  queryAppointment(first: \$first, order: {asc: date}, filter: {date: {ge: \$date}, appointmentState: {eq: none}}, offset: \$offset) {
     appointmentState
     company {
       city
@@ -57,7 +31,7 @@ subscription AppointmentSubscription {
 ''';
 
   static const mutateAppointmentQuery = '''
-mutation MyMutation {
+mutation MyMutation(\$id: [ID!], \$additionalInformation: String, \$appointmentState: AppointmentState!) {
   updateAppointment(input: {filter: {id: \$id}, set: {additionalInformation: \$additionalInformation, appointmentState: \$appointmentState}}) {
     appointment {
       id
@@ -104,43 +78,39 @@ query Companies {
   Future<List<Appointment>> getAppointments(int offset) async {
     final result = await graphQLClient.query(QueryOptions(
       document: gql(allAppointmentsQuery),
-      variables: {"offset": offset, "first": 10},
+      fetchPolicy: FetchPolicy.networkOnly,
+      variables: {
+        "offset": offset,
+        "first": 10,
+        "date": DateTime.now().toGraphQlDateString(),
+      },
     ));
 
     final resultData = result.data?["queryAppointment"];
     if (resultData != null && resultData is List) {
       return resultData
-          .map(
-            (dynamic e) => Appointment.fromJson((e as Map<String, dynamic>)),
-          )
+          .map((dynamic e) => Appointment.fromJson((e as Map<String, dynamic>)))
           .toList();
     }
     throw const FormatException();
   }
 
-  // ObservableQuery<Object?> watchAppointmentDetail(String id) =>
-  //     graphQLClient.watchQuery(
-  //       WatchQueryOptions(
-  //         document: gql(appointmentDetail),
-  //         variables: {"id": id},
-  //       ),
-  //     );
-
-  Future patchAppointment(
+  Future<bool> patchAppointment(
     String id,
     AppointmentState state,
     String? additionalInformation,
   ) async {
-    graphQLClient.mutate(
+    final response = await graphQLClient.mutate(
       MutationOptions(
         document: gql(mutateAppointmentQuery),
         variables: {
           "id": id,
-          "state": state.name,
+          "appointmentState": state.name,
           "additionalInformation": additionalInformation,
         },
       ),
     );
+    return !response.hasException;
   }
 
   Future<List<Company>> getCompanies() async {
@@ -150,9 +120,7 @@ query Companies {
     final resultData = result.data?["queryCompany"];
     if (resultData != null && resultData is List) {
       return resultData
-          .map(
-            (dynamic e) => Company.fromJson((e as Map<String, dynamic>)),
-          )
+          .map((dynamic e) => Company.fromJson((e as Map<String, dynamic>)))
           .toList();
     }
     throw const FormatException();

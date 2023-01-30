@@ -8,6 +8,7 @@ part of 'appointment.dart';
 
 _$_Appointment _$$_AppointmentFromJson(Map<String, dynamic> json) =>
     _$_Appointment(
+      id: json['id'] as String,
       date: DateTime.parse(json['date'] as String),
       company: Company.fromJson(json['company'] as Map<String, dynamic>),
       appointmentState: $enumDecodeNullable(
@@ -19,6 +20,7 @@ _$_Appointment _$$_AppointmentFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_AppointmentToJson(_$_Appointment instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'date': instance.date.toIso8601String(),
       'company': instance.company,
       'appointmentState': _$AppointmentStateEnumMap[instance.appointmentState]!,

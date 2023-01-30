@@ -1,4 +1,4 @@
-import 'package:appointment_management/appointment_detail/view/appointment_detail_view.dart';
+import 'package:appointment_management/appointment_detail/view/appointment_detail_page.dart';
 import 'package:appointment_management/appointments_overview/bloc/appointments_overview_bloc.dart';
 import 'package:appointment_management/models/appointment.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class AppointmentCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Navigator.of(context).push(
-            AppointmentDetailView.route(
+            AppointmentDetailPage.route(
               context.read<AppointmentsOverviewBloc>(),
               appointment,
             ),

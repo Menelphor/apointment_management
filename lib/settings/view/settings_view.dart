@@ -63,7 +63,7 @@ class _AddNewAppointmentsTile extends StatelessWidget {
       showLoadingDialog(context);
     }
     if (state.addNewAppointmentsState == AddNewAppointmentsState.finished) {
-      Navigator.of(context).popUntil((route) => route is! DialogRoute);
+      closeLoadingDialog(context);
       context
           .read<AppointmentsOverviewBloc>()
           .add(AppointmentsOverviewEvent.initial);

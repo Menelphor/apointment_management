@@ -25,6 +25,7 @@ mixin _$Company {
   String get street => throw _privateConstructorUsedError;
   String get houseNumber => throw _privateConstructorUsedError;
   String get postCode => throw _privateConstructorUsedError;
+  String get city => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
   String get contact => throw _privateConstructorUsedError;
 
@@ -44,6 +45,7 @@ abstract class $CompanyCopyWith<$Res> {
       String street,
       String houseNumber,
       String postCode,
+      String city,
       String phoneNumber,
       String contact});
 }
@@ -66,6 +68,7 @@ class _$CompanyCopyWithImpl<$Res, $Val extends Company>
     Object? street = null,
     Object? houseNumber = null,
     Object? postCode = null,
+    Object? city = null,
     Object? phoneNumber = null,
     Object? contact = null,
   }) {
@@ -89,6 +92,10 @@ class _$CompanyCopyWithImpl<$Res, $Val extends Company>
       postCode: null == postCode
           ? _value.postCode
           : postCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
               as String,
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
@@ -115,6 +122,7 @@ abstract class _$$_CompanyCopyWith<$Res> implements $CompanyCopyWith<$Res> {
       String street,
       String houseNumber,
       String postCode,
+      String city,
       String phoneNumber,
       String contact});
 }
@@ -134,6 +142,7 @@ class __$$_CompanyCopyWithImpl<$Res>
     Object? street = null,
     Object? houseNumber = null,
     Object? postCode = null,
+    Object? city = null,
     Object? phoneNumber = null,
     Object? contact = null,
   }) {
@@ -158,6 +167,10 @@ class __$$_CompanyCopyWithImpl<$Res>
           ? _value.postCode
           : postCode // ignore: cast_nullable_to_non_nullable
               as String,
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String,
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -179,6 +192,7 @@ class _$_Company implements _Company {
       required this.street,
       required this.houseNumber,
       required this.postCode,
+      required this.city,
       required this.phoneNumber,
       required this.contact});
 
@@ -196,13 +210,15 @@ class _$_Company implements _Company {
   @override
   final String postCode;
   @override
+  final String city;
+  @override
   final String phoneNumber;
   @override
   final String contact;
 
   @override
   String toString() {
-    return 'Company(id: $id, name: $name, street: $street, houseNumber: $houseNumber, postCode: $postCode, phoneNumber: $phoneNumber, contact: $contact)';
+    return 'Company(id: $id, name: $name, street: $street, houseNumber: $houseNumber, postCode: $postCode, city: $city, phoneNumber: $phoneNumber, contact: $contact)';
   }
 
   @override
@@ -217,6 +233,7 @@ class _$_Company implements _Company {
                 other.houseNumber == houseNumber) &&
             (identical(other.postCode, postCode) ||
                 other.postCode == postCode) &&
+            (identical(other.city, city) || other.city == city) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.contact, contact) || other.contact == contact));
@@ -225,7 +242,7 @@ class _$_Company implements _Company {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, street, houseNumber,
-      postCode, phoneNumber, contact);
+      postCode, city, phoneNumber, contact);
 
   @JsonKey(ignore: true)
   @override
@@ -248,6 +265,7 @@ abstract class _Company implements Company {
       required final String street,
       required final String houseNumber,
       required final String postCode,
+      required final String city,
       required final String phoneNumber,
       required final String contact}) = _$_Company;
 
@@ -263,6 +281,8 @@ abstract class _Company implements Company {
   String get houseNumber;
   @override
   String get postCode;
+  @override
+  String get city;
   @override
   String get phoneNumber;
   @override

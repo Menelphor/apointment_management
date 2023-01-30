@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:appointment_management/appointments_overview/bloc/appointments_overview_event.dart';
 import 'package:appointment_management/appointments_overview/bloc/appointments_overview_state.dart';
 import 'package:appointment_management/service/appointment_service.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppointmentsOverviewBloc
@@ -42,7 +43,7 @@ class AppointmentsOverviewBloc
         state.copyWith(
           status: AppointmentsOverviewStatus.data,
           appointments: List.of(state.appointments)..addAll(newAppointments),
-          hasReachedMax: false,
+          hasReachedMax: newAppointments.length < 10,
         ),
       );
     }
@@ -63,5 +64,19 @@ class AppointmentsOverviewBloc
     } catch (e) {
       emit(AppointmentsOverviewState(status: AppointmentsOverviewStatus.error));
     }
+  }
+
+  @override
+  void onChange(Change<AppointmentsOverviewState> change) {
+    debugPrint(
+      "Overview Bloc Change: ${change.currentState} ${change.nextState}",
+    );
+    super.onChange(change);
+  }
+
+  @override
+  void onEvent(AppointmentsOverviewEvent event) {
+    debugPrint("Overview Bloc Event: $event");
+    super.onEvent(event);
   }
 }

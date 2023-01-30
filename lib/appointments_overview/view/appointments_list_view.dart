@@ -24,6 +24,11 @@ class _AppointmentsListViewState extends State<AppointmentsListView> {
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (_scrollController.position.maxScrollExtent == 0) {
+        _fetchMore();
+      }
+    });
   }
 
   @override
@@ -52,10 +57,14 @@ class _AppointmentsListViewState extends State<AppointmentsListView> {
 
   void _onScroll() {
     if (_isBottom) {
-      context
-          .read<AppointmentsOverviewBloc>()
-          .add(AppointmentsOverviewEvent.fetchMore);
+      _fetchMore();
     }
+  }
+
+  void _fetchMore() {
+    context
+        .read<AppointmentsOverviewBloc>()
+        .add(AppointmentsOverviewEvent.fetchMore);
   }
 
   bool get _isBottom {

@@ -22,4 +22,6 @@ class DependencyInjection {
       AppointmentService(GetIt.I.get()),
     );
   }
+
+  static AppointmentService get appointmentService => GetIt.I.get();
 }

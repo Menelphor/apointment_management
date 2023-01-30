@@ -1,4 +1,4 @@
-import 'package:appointment_management/appointments_overview/view/appointments_overview_view.dart';
+import 'package:appointment_management/appointments_overview/view/appointments_overview_page.dart';
 import 'package:appointment_management/dependency_injection.dart';
 import 'package:appointment_management/settings/bloc/settings_cubit.dart';
 import 'package:appointment_management/settings/bloc/settings_state.dart';

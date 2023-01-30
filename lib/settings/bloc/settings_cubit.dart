@@ -14,24 +14,18 @@ class SettingsCubit extends Cubit<SettingsState> {
       state.copyWith(addNewAppointmentsState: AddNewAppointmentsState.loading),
     );
     final companies = await appointmentService.getCompanies();
-    var startDate = date.copyWith(
-      hour: 9,
-      minute: 0,
-      second: 0,
-      millisecond: 0,
-      microsecond: 0,
-    );
 
     final futures = <Future>[];
     for (int index = 0; index < 3; index++) {
       final duration = (index + 1) * 30;
       for (final company in companies) {
-        futures.add(appointmentService.createAppointment(
-          company.id,
-          duration,
-          startDate,
-        ));
-        startDate = startDate.add(Duration(minutes: duration));
+        futures.add(
+          appointmentService.createAppointment(
+            company.id,
+            duration,
+            date,
+          ),
+        );
       }
     }
     await Future.wait(futures);

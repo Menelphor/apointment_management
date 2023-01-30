@@ -8,6 +8,7 @@ part 'appointment.g.dart';
 @freezed
 class Appointment with _$Appointment {
   factory Appointment({
+    required String id,
     required DateTime date,
     required Company company,
     @Default(AppointmentState.none) AppointmentState appointmentState,

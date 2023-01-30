@@ -16,3 +16,7 @@ Future<dynamic> showLoadingDialog(BuildContext context) {
     ),
   );
 }
+
+closeLoadingDialog(BuildContext context) => Navigator.of(context).popUntil(
+      (route) => route is! DialogRoute,
+    );

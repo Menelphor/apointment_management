@@ -12,6 +12,7 @@ _$_Company _$$_CompanyFromJson(Map<String, dynamic> json) => _$_Company(
       street: json['street'] as String,
       houseNumber: json['houseNumber'] as String,
       postCode: json['postCode'] as String,
+      city: json['city'] as String,
       phoneNumber: json['phoneNumber'] as String,
       contact: json['contact'] as String,
     );
@@ -23,6 +24,7 @@ Map<String, dynamic> _$$_CompanyToJson(_$_Company instance) =>
       'street': instance.street,
       'houseNumber': instance.houseNumber,
       'postCode': instance.postCode,
+      'city': instance.city,
       'phoneNumber': instance.phoneNumber,
       'contact': instance.contact,
     };

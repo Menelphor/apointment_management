@@ -17,13 +17,13 @@ class AppointmentsOverviewPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => AppointmentsOverviewBloc(GetIt.I.get())
         ..add(AppointmentsOverviewEvent.initial),
-      child: const AppointmentsOverviewView(),
+      child: const _AppointmentsOverviewPage(),
     );
   }
 }
 
-class AppointmentsOverviewView extends StatelessWidget {
-  const AppointmentsOverviewView({super.key});
+class _AppointmentsOverviewPage extends StatelessWidget {
+  const _AppointmentsOverviewPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
