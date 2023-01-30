@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "apointment_management",
+            "name": "appointment_management",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "apointment_management (profile mode)",
+            "name": "appointment_management (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "apointment_management (release mode)",
+            "name": "appointment_management (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

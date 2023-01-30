@@ -1,4 +1,4 @@
-import 'package:apointment_management/service/appointment_service.dart';
+import 'package:appointment_management/service/appointment_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:graphql/client.dart';
 
