@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:apointment_management/appointments_overview/bloc/appointments_overview_event.dart';
 import 'package:apointment_management/appointments_overview/bloc/appointments_overview_state.dart';
 import 'package:apointment_management/service/appointment_service.dart';
@@ -5,12 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppointmentsOverviewBloc
     extends Bloc<AppointmentsOverviewEvent, AppointmentsOverviewState> {
+  final AppointmentService appointmentService;
+
   AppointmentsOverviewBloc(this.appointmentService)
       : super(AppointmentsOverviewState.loading()) {
     on(fetchAppointments);
   }
-
-  final AppointmentService appointmentService;
 
   Future<void> fetchAppointments(
     AppointmentsOverviewEvent event,
@@ -40,8 +42,8 @@ class AppointmentsOverviewBloc
 
     emit(
       AppointmentsOverviewState.data(
-        appointments,
-        offset,
+        appointments: appointments,
+        offset: offset,
       ),
     );
   }
@@ -50,6 +52,6 @@ class AppointmentsOverviewBloc
     Emitter<AppointmentsOverviewState> emit,
   ) async {
     final appointments = await appointmentService.getAppointments(0);
-    emit(AppointmentsOverviewState.data(appointments, 0));
+    emit(AppointmentsOverviewState.data(appointments: appointments));
   }
 }

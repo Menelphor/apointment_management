@@ -1,22 +1,13 @@
 import 'package:apointment_management/models/appointment.dart';
 import 'package:apointment_management/models/appointment_state.dart';
+import 'package:apointment_management/models/company.dart';
 import 'package:graphql/client.dart';
 
 class AppointmentService {
-  AppointmentService();
-  // final GraphQLClient graphqlClient;
-  final graphQLClient = GraphQLClient(
-    cache: GraphQLCache(store: InMemoryStore()),
-    link: HttpLink(
-      "https://nameless-brook-400132.eu-central-1.aws.cloud.dgraph.io/graphql",
-      defaultHeaders: {
-        "Dg-Auth": "Mjg4N2I1N2QyODgyMTViMDcyZTYyNzQ1OGVmMDA2ZGE=",
-      },
-    ),
-  );
-  // appointmentService = AppointmentService(graphQLClient);
+  AppointmentService(this.graphQLClient);
+  final GraphQLClient graphQLClient;
 
-  static const allApointments = '''
+  static const allApointmentsQuery = '''
 query GetAppointments(\$offset: Int, \$first: Int) {
   queryAppointment(
     first: \$first
@@ -65,7 +56,7 @@ subscription AppointmentSubscription {
 }
 ''';
 
-  static const mutateAppointment = '''
+  static const mutateAppointmentQuery = '''
 mutation MyMutation {
   updateAppointment(input: {filter: {id: \$id}, set: {additionalInformation: \$additionalInformation, appointmentState: \$appointmentState}}) {
     appointment {
@@ -75,9 +66,44 @@ mutation MyMutation {
 }
 ''';
 
+  static const createAppointmentQuery = '''
+mutation CreateAppointmentForCompany(\$id: [ID!], \$date: DateTime!, \$durationMinutes:Int!) {
+  updateCompany(input: {filter: {id: \$id}, set: {appointment: {appointmentState: none, date: \$date, durationMinutes: \$durationMinutes}}}) {
+    company {
+      name
+      appointment {
+        additionalInformation
+        appointmentState
+        date
+        durationMinutes
+        company {
+          name
+        }
+      }
+    }
+  }
+}
+''';
+
+  static const getCompaniesQuery = '''
+query Companies {
+  queryCompany {
+    id
+    city
+    contact
+    country
+    houseNumber
+    name
+    phoneNumber
+    postCode
+    street
+  }
+}
+''';
+
   Future<List<Appointment>> getAppointments(int offset) async {
     final result = await graphQLClient.query(QueryOptions(
-      document: gql(allApointments),
+      document: gql(allApointmentsQuery),
       variables: {"offset": offset, "first": 10},
     ));
 
@@ -108,7 +134,7 @@ mutation MyMutation {
   ) async {
     graphQLClient.mutate(
       MutationOptions(
-        document: gql(mutateAppointment),
+        document: gql(mutateAppointmentQuery),
         variables: {
           "id": id,
           "state": state.name,
@@ -117,4 +143,36 @@ mutation MyMutation {
       ),
     );
   }
+
+  Future<List<Company>> getCompanies() async {
+    final result = await graphQLClient.query(
+      QueryOptions(document: gql(getCompaniesQuery)),
+    );
+    final resultData = result.data?["queryCompany"];
+    if (resultData != null && resultData is List) {
+      return resultData.map((e) {
+        if (e is Map<String, dynamic>) {
+          return Company.fromJson(e);
+        }
+        throw const FormatException();
+      }).toList();
+    }
+    throw const FormatException();
+  }
+
+  Future createAppointment(
+    String companyId,
+    int durationMinutes,
+    DateTime date,
+  ) =>
+      graphQLClient.mutate(
+        MutationOptions(
+          document: gql(createAppointmentQuery),
+          variables: {
+            "id": companyId,
+            "date": date.toIso8601String(),
+            "durationMinutes": durationMinutes,
+          },
+        ),
+      );
 }

@@ -5,7 +5,10 @@ part 'appointments_overview_state.freezed.dart';
 @freezed
 class AppointmentsOverviewState with _$AppointmentsOverviewState {
   factory AppointmentsOverviewState.loading() = _AppointmentsOverviewLoading;
-  factory AppointmentsOverviewState.data(
-      List<Appointment> appointments, int offset) = AppointmentsOverviewData;
+  factory AppointmentsOverviewState.data({
+    required List<Appointment> appointments,
+    @Default(0) int offset,
+    @Default(false) bool hasReachedMax,
+  }) = AppointmentsOverviewData;
   factory AppointmentsOverviewState.error() = _AppointmentsOverviewError;
 }

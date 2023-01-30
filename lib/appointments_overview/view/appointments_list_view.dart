@@ -1,4 +1,5 @@
 import 'package:apointment_management/models/appointment.dart';
+import 'package:apointment_management/config/dimensions.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentsListView extends StatelessWidget {
@@ -9,6 +10,7 @@ class AppointmentsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: Dimensions.screenPadding,
       children: [
         for (final appointment in appointments)
           Card(

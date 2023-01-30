@@ -19,21 +19,27 @@ mixin _$AppointmentsOverviewState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Appointment> appointments, int offset) data,
+    required TResult Function(
+            List<Appointment> appointments, int offset, bool hasReachedMax)
+        data,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Appointment> appointments, int offset)? data,
+    TResult? Function(
+            List<Appointment> appointments, int offset, bool hasReachedMax)?
+        data,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Appointment> appointments, int offset)? data,
+    TResult Function(
+            List<Appointment> appointments, int offset, bool hasReachedMax)?
+        data,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -124,7 +130,9 @@ class _$_AppointmentsOverviewLoading implements _AppointmentsOverviewLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Appointment> appointments, int offset) data,
+    required TResult Function(
+            List<Appointment> appointments, int offset, bool hasReachedMax)
+        data,
     required TResult Function() error,
   }) {
     return loading();
@@ -134,7 +142,9 @@ class _$_AppointmentsOverviewLoading implements _AppointmentsOverviewLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Appointment> appointments, int offset)? data,
+    TResult? Function(
+            List<Appointment> appointments, int offset, bool hasReachedMax)?
+        data,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -144,7 +154,9 @@ class _$_AppointmentsOverviewLoading implements _AppointmentsOverviewLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Appointment> appointments, int offset)? data,
+    TResult Function(
+            List<Appointment> appointments, int offset, bool hasReachedMax)?
+        data,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -200,7 +212,7 @@ abstract class _$$AppointmentsOverviewDataCopyWith<$Res> {
           $Res Function(_$AppointmentsOverviewData) then) =
       __$$AppointmentsOverviewDataCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Appointment> appointments, int offset});
+  $Res call({List<Appointment> appointments, int offset, bool hasReachedMax});
 }
 
 /// @nodoc
@@ -217,16 +229,21 @@ class __$$AppointmentsOverviewDataCopyWithImpl<$Res>
   $Res call({
     Object? appointments = null,
     Object? offset = null,
+    Object? hasReachedMax = null,
   }) {
     return _then(_$AppointmentsOverviewData(
-      null == appointments
+      appointments: null == appointments
           ? _value._appointments
           : appointments // ignore: cast_nullable_to_non_nullable
               as List<Appointment>,
-      null == offset
+      offset: null == offset
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
               as int,
+      hasReachedMax: null == hasReachedMax
+          ? _value.hasReachedMax
+          : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -234,7 +251,10 @@ class __$$AppointmentsOverviewDataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AppointmentsOverviewData implements AppointmentsOverviewData {
-  _$AppointmentsOverviewData(final List<Appointment> appointments, this.offset)
+  _$AppointmentsOverviewData(
+      {required final List<Appointment> appointments,
+      this.offset = 0,
+      this.hasReachedMax = false})
       : _appointments = appointments;
 
   final List<Appointment> _appointments;
@@ -246,11 +266,15 @@ class _$AppointmentsOverviewData implements AppointmentsOverviewData {
   }
 
   @override
+  @JsonKey()
   final int offset;
+  @override
+  @JsonKey()
+  final bool hasReachedMax;
 
   @override
   String toString() {
-    return 'AppointmentsOverviewState.data(appointments: $appointments, offset: $offset)';
+    return 'AppointmentsOverviewState.data(appointments: $appointments, offset: $offset, hasReachedMax: $hasReachedMax)';
   }
 
   @override
@@ -260,12 +284,17 @@ class _$AppointmentsOverviewData implements AppointmentsOverviewData {
             other is _$AppointmentsOverviewData &&
             const DeepCollectionEquality()
                 .equals(other._appointments, _appointments) &&
-            (identical(other.offset, offset) || other.offset == offset));
+            (identical(other.offset, offset) || other.offset == offset) &&
+            (identical(other.hasReachedMax, hasReachedMax) ||
+                other.hasReachedMax == hasReachedMax));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_appointments), offset);
+      runtimeType,
+      const DeepCollectionEquality().hash(_appointments),
+      offset,
+      hasReachedMax);
 
   @JsonKey(ignore: true)
   @override
@@ -279,32 +308,38 @@ class _$AppointmentsOverviewData implements AppointmentsOverviewData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Appointment> appointments, int offset) data,
+    required TResult Function(
+            List<Appointment> appointments, int offset, bool hasReachedMax)
+        data,
     required TResult Function() error,
   }) {
-    return data(appointments, offset);
+    return data(appointments, offset, hasReachedMax);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Appointment> appointments, int offset)? data,
+    TResult? Function(
+            List<Appointment> appointments, int offset, bool hasReachedMax)?
+        data,
     TResult? Function()? error,
   }) {
-    return data?.call(appointments, offset);
+    return data?.call(appointments, offset, hasReachedMax);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Appointment> appointments, int offset)? data,
+    TResult Function(
+            List<Appointment> appointments, int offset, bool hasReachedMax)?
+        data,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (data != null) {
-      return data(appointments, offset);
+      return data(appointments, offset, hasReachedMax);
     }
     return orElse();
   }
@@ -346,11 +381,13 @@ class _$AppointmentsOverviewData implements AppointmentsOverviewData {
 
 abstract class AppointmentsOverviewData implements AppointmentsOverviewState {
   factory AppointmentsOverviewData(
-          final List<Appointment> appointments, final int offset) =
-      _$AppointmentsOverviewData;
+      {required final List<Appointment> appointments,
+      final int offset,
+      final bool hasReachedMax}) = _$AppointmentsOverviewData;
 
   List<Appointment> get appointments;
   int get offset;
+  bool get hasReachedMax;
   @JsonKey(ignore: true)
   _$$AppointmentsOverviewDataCopyWith<_$AppointmentsOverviewData>
       get copyWith => throw _privateConstructorUsedError;
@@ -399,7 +436,9 @@ class _$_AppointmentsOverviewError implements _AppointmentsOverviewError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<Appointment> appointments, int offset) data,
+    required TResult Function(
+            List<Appointment> appointments, int offset, bool hasReachedMax)
+        data,
     required TResult Function() error,
   }) {
     return error();
@@ -409,7 +448,9 @@ class _$_AppointmentsOverviewError implements _AppointmentsOverviewError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<Appointment> appointments, int offset)? data,
+    TResult? Function(
+            List<Appointment> appointments, int offset, bool hasReachedMax)?
+        data,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -419,7 +460,9 @@ class _$_AppointmentsOverviewError implements _AppointmentsOverviewError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<Appointment> appointments, int offset)? data,
+    TResult Function(
+            List<Appointment> appointments, int offset, bool hasReachedMax)?
+        data,
     TResult Function()? error,
     required TResult orElse(),
   }) {
