@@ -109,12 +109,11 @@ query Companies {
 
     final resultData = result.data?["queryAppointment"];
     if (resultData != null && resultData is List) {
-      return resultData.map((e) {
-        if (e is Map<String, dynamic>) {
-          return Appointment.fromJson(e);
-        }
-        throw const FormatException();
-      }).toList();
+      return resultData
+          .map(
+            (dynamic e) => Appointment.fromJson((e as Map<String, dynamic>)),
+          )
+          .toList();
     }
     throw const FormatException();
   }
@@ -150,12 +149,11 @@ query Companies {
     );
     final resultData = result.data?["queryCompany"];
     if (resultData != null && resultData is List) {
-      return resultData.map((e) {
-        if (e is Map<String, dynamic>) {
-          return Company.fromJson(e);
-        }
-        throw const FormatException();
-      }).toList();
+      return resultData
+          .map(
+            (dynamic e) => Company.fromJson((e as Map<String, dynamic>)),
+          )
+          .toList();
     }
     throw const FormatException();
   }

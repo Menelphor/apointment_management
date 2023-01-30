@@ -28,29 +28,23 @@ class AppointmentsOverviewView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Anstehende Termine'),
-        actions: [
-          IconButton(
-            onPressed: () => navigateToSettings(context),
-            icon: const Icon(Icons.settings),
-          ),
-        ],
-      ),
-      body: BlocBuilder<AppointmentsOverviewBloc, AppointmentsOverviewState>(
-        builder: (context, state) => state.when(
-          loading: Container.new,
-          error: Container.new,
-          data: (appointments, _, __) => AppointmentsListView(appointments),
+        appBar: AppBar(
+          title: const Text('Anstehende Termine'),
+          actions: [
+            IconButton(
+              onPressed: () => navigateToSettings(context),
+              icon: const Icon(Icons.settings),
+            ),
+          ],
         ),
+        body: const AppointmentsListView());
+  }
+
+  Future<dynamic> navigateToSettings(BuildContext context) {
+    return Navigator.of(context).push(
+      SettingsView.route(
+        context.read<AppointmentsOverviewBloc>(),
       ),
     );
   }
-
-  Future<dynamic> navigateToSettings(BuildContext context) =>
-      Navigator.of(context).push(
-        SettingsView.route(
-          context.read<AppointmentsOverviewBloc>(),
-        ),
-      );
 }
