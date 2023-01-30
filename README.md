@@ -1,4 +1,4 @@
-# apointment_management
+# appointment_management
 
 A new Flutter project.
 

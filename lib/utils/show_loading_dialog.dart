@@ -1,4 +1,4 @@
-import 'package:apointment_management/config/dimensions.dart';
+import 'package:appointment_management/config/dimensions.dart';
 import 'package:flutter/material.dart';
 
 Future<dynamic> showLoadingDialog(BuildContext context) {

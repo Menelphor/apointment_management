@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:apointment_management/service/appointment_service.dart';
-import 'package:apointment_management/settings/bloc/settings_state.dart';
+import 'package:appointment_management/service/appointment_service.dart';
+import 'package:appointment_management/settings/bloc/settings_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
@@ -10,7 +10,6 @@ class SettingsCubit extends Cubit<SettingsState> {
   final AppointmentService appointmentService;
 
   FutureOr<void> addNewAppointments(DateTime date) async {
-    final now = DateTime.now();
     emit(
       state.copyWith(addNewAppointmentsState: AddNewAppointmentsState.loading),
     );
@@ -39,7 +38,6 @@ class SettingsCubit extends Cubit<SettingsState> {
     emit(
       state.copyWith(addNewAppointmentsState: AddNewAppointmentsState.finished),
     );
-    print(DateTime.now().difference(now));
   }
 
   void setAppTheme(bool value) => emit(SettingsState(darkTheme: value));

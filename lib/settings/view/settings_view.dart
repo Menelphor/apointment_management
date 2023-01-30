@@ -1,9 +1,9 @@
-import 'package:apointment_management/appointments_overview/bloc/appointments_overview_bloc.dart';
-import 'package:apointment_management/appointments_overview/bloc/appointments_overview_event.dart';
-import 'package:apointment_management/settings/bloc/settings_cubit.dart';
-import 'package:apointment_management/config/dimensions.dart';
-import 'package:apointment_management/settings/bloc/settings_state.dart';
-import 'package:apointment_management/utils/show_loading_dialog.dart';
+import 'package:appointment_management/appointments_overview/bloc/appointments_overview_bloc.dart';
+import 'package:appointment_management/appointments_overview/bloc/appointments_overview_event.dart';
+import 'package:appointment_management/settings/bloc/settings_cubit.dart';
+import 'package:appointment_management/config/dimensions.dart';
+import 'package:appointment_management/settings/bloc/settings_state.dart';
+import 'package:appointment_management/utils/show_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -46,7 +46,7 @@ class _AddNewAppointmentsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SettingsCubit, SettingsState>(
-      listener: handleAddApointments,
+      listener: handleAddAppointments,
       child: ListTile(
         contentPadding: Dimensions.screenPadding,
         title: const Text('6 Neue Termine im Backend erstellen'),
@@ -55,7 +55,7 @@ class _AddNewAppointmentsTile extends StatelessWidget {
     );
   }
 
-  void handleAddApointments(
+  void handleAddAppointments(
     BuildContext context,
     SettingsState state,
   ) {

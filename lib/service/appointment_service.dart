@@ -1,13 +1,13 @@
-import 'package:apointment_management/models/appointment.dart';
-import 'package:apointment_management/models/appointment_state.dart';
-import 'package:apointment_management/models/company.dart';
+import 'package:appointment_management/models/appointment.dart';
+import 'package:appointment_management/models/appointment_state.dart';
+import 'package:appointment_management/models/company.dart';
 import 'package:graphql/client.dart';
 
 class AppointmentService {
   AppointmentService(this.graphQLClient);
   final GraphQLClient graphQLClient;
 
-  static const allApointmentsQuery = '''
+  static const allAppointmentsQuery = '''
 query GetAppointments(\$offset: Int, \$first: Int) {
   queryAppointment(
     first: \$first
@@ -103,7 +103,7 @@ query Companies {
 
   Future<List<Appointment>> getAppointments(int offset) async {
     final result = await graphQLClient.query(QueryOptions(
-      document: gql(allApointmentsQuery),
+      document: gql(allAppointmentsQuery),
       variables: {"offset": offset, "first": 10},
     ));
 
@@ -118,13 +118,13 @@ query Companies {
     throw const FormatException();
   }
 
-  ObservableQuery<Object?> watchAppointmentDetail(String id) =>
-      graphQLClient.watchQuery(
-        WatchQueryOptions(
-          document: gql(appointmentDetail),
-          variables: {"id": id},
-        ),
-      );
+  // ObservableQuery<Object?> watchAppointmentDetail(String id) =>
+  //     graphQLClient.watchQuery(
+  //       WatchQueryOptions(
+  //         document: gql(appointmentDetail),
+  //         variables: {"id": id},
+  //       ),
+  //     );
 
   Future patchAppointment(
     String id,

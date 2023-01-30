@@ -1,7 +1,7 @@
-import 'package:apointment_management/appointments_overview/view/appointments_overview_view.dart';
-import 'package:apointment_management/dependency_injection.dart';
-import 'package:apointment_management/settings/bloc/settings_cubit.dart';
-import 'package:apointment_management/settings/bloc/settings_state.dart';
+import 'package:appointment_management/appointments_overview/view/appointments_overview_view.dart';
+import 'package:appointment_management/dependency_injection.dart';
+import 'package:appointment_management/settings/bloc/settings_cubit.dart';
+import 'package:appointment_management/settings/bloc/settings_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';

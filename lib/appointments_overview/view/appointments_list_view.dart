@@ -1,14 +1,18 @@
-import 'package:apointment_management/appointments_overview/bloc/appointments_overview_bloc.dart';
-import 'package:apointment_management/appointments_overview/bloc/appointments_overview_event.dart';
-import 'package:apointment_management/appointments_overview/bloc/appointments_overview_state.dart';
-import 'package:apointment_management/appointments_overview/widgets/appointment_card.dart';
-import 'package:apointment_management/appointments_overview/widgets/bottom_loader.dart';
+import 'package:appointment_management/appointments_overview/bloc/appointments_overview_bloc.dart';
+import 'package:appointment_management/appointments_overview/bloc/appointments_overview_event.dart';
+import 'package:appointment_management/appointments_overview/bloc/appointments_overview_state.dart';
+import 'package:appointment_management/appointments_overview/widgets/appointment_card.dart';
+import 'package:appointment_management/appointments_overview/widgets/bottom_loader.dart';
+import 'package:appointment_management/config/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppointmentsListView extends StatefulWidget {
-  const AppointmentsListView({super.key});
-
+  const AppointmentsListView({
+    super.key,
+    required this.state,
+  });
+  final AppointmentsOverviewState state;
   @override
   State<AppointmentsListView> createState() => _AppointmentsListViewState();
 }
@@ -24,26 +28,17 @@ class _AppointmentsListViewState extends State<AppointmentsListView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppointmentsOverviewBloc, AppointmentsOverviewState>(
-      builder: (context, state) => state.map(
-        loading: (_) => const CircularProgressIndicator(),
-        error: (_) => const Center(
-          child: Text('Termine konnten nicht geladen werden'),
-        ),
-        data: (state) {
-          return ListView.builder(
-            itemBuilder: (BuildContext context, int index) {
-              return index >= state.appointments.length
-                  ? const BottomLoader()
-                  : AppointmentCard(appointment: state.appointments[index]);
-            },
-            itemCount: state.hasReachedMax
-                ? state.appointments.length
-                : state.appointments.length + 1,
-            controller: _scrollController,
-          );
-        },
-      ),
+    return ListView.builder(
+      padding: Dimensions.screenPadding,
+      controller: _scrollController,
+      itemCount: widget.state.hasReachedMax
+          ? widget.state.appointments.length
+          : widget.state.appointments.length + 1,
+      itemBuilder: (BuildContext context, int index) {
+        return index >= widget.state.appointments.length
+            ? const BottomLoader()
+            : AppointmentCard(appointment: widget.state.appointments[index]);
+      },
     );
   }
 
@@ -56,10 +51,11 @@ class _AppointmentsListViewState extends State<AppointmentsListView> {
   }
 
   void _onScroll() {
-    if (_isBottom)
+    if (_isBottom) {
       context
           .read<AppointmentsOverviewBloc>()
           .add(AppointmentsOverviewEvent.fetchMore);
+    }
   }
 
   bool get _isBottom {

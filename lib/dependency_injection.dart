@@ -1,4 +1,4 @@
-import 'package:apointment_management/service/appointment_service.dart';
+import 'package:appointment_management/service/appointment_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:graphql/client.dart';
 

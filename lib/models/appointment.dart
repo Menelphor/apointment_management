@@ -1,5 +1,5 @@
-import 'package:apointment_management/models/appointment_state.dart';
-import 'package:apointment_management/models/company.dart';
+import 'package:appointment_management/models/appointment_state.dart';
+import 'package:appointment_management/models/company.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'appointment.freezed.dart';

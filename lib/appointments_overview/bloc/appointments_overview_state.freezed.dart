@@ -16,55 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AppointmentsOverviewState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(
-            List<Appointment> appointments, int offset, bool hasReachedMax)
-        data,
-    required TResult Function() error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(
-            List<Appointment> appointments, int offset, bool hasReachedMax)?
-        data,
-    TResult? Function()? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(
-            List<Appointment> appointments, int offset, bool hasReachedMax)?
-        data,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AppointmentsOverviewLoading value) loading,
-    required TResult Function(AppointmentsOverviewData value) data,
-    required TResult Function(_AppointmentsOverviewError value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AppointmentsOverviewLoading value)? loading,
-    TResult? Function(AppointmentsOverviewData value)? data,
-    TResult? Function(_AppointmentsOverviewError value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AppointmentsOverviewLoading value)? loading,
-    TResult Function(AppointmentsOverviewData value)? data,
-    TResult Function(_AppointmentsOverviewError value)? error,
-    required TResult orElse(),
-  }) =>
+  List<Appointment> get appointments => throw _privateConstructorUsedError;
+  bool get hasReachedMax => throw _privateConstructorUsedError;
+  AppointmentsOverviewStatus get status => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AppointmentsOverviewStateCopyWith<AppointmentsOverviewState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -73,6 +30,11 @@ abstract class $AppointmentsOverviewStateCopyWith<$Res> {
   factory $AppointmentsOverviewStateCopyWith(AppointmentsOverviewState value,
           $Res Function(AppointmentsOverviewState) then) =
       _$AppointmentsOverviewStateCopyWithImpl<$Res, AppointmentsOverviewState>;
+  @useResult
+  $Res call(
+      {List<Appointment> appointments,
+      bool hasReachedMax,
+      AppointmentsOverviewStatus status});
 }
 
 /// @nodoc
@@ -85,180 +47,92 @@ class _$AppointmentsOverviewStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? appointments = null,
+    Object? hasReachedMax = null,
+    Object? status = null,
+  }) {
+    return _then(_value.copyWith(
+      appointments: null == appointments
+          ? _value.appointments
+          : appointments // ignore: cast_nullable_to_non_nullable
+              as List<Appointment>,
+      hasReachedMax: null == hasReachedMax
+          ? _value.hasReachedMax
+          : hasReachedMax // ignore: cast_nullable_to_non_nullable
+              as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as AppointmentsOverviewStatus,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_AppointmentsOverviewLoadingCopyWith<$Res> {
-  factory _$$_AppointmentsOverviewLoadingCopyWith(
-          _$_AppointmentsOverviewLoading value,
-          $Res Function(_$_AppointmentsOverviewLoading) then) =
-      __$$_AppointmentsOverviewLoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_AppointmentsOverviewLoadingCopyWithImpl<$Res>
-    extends _$AppointmentsOverviewStateCopyWithImpl<$Res,
-        _$_AppointmentsOverviewLoading>
-    implements _$$_AppointmentsOverviewLoadingCopyWith<$Res> {
-  __$$_AppointmentsOverviewLoadingCopyWithImpl(
-      _$_AppointmentsOverviewLoading _value,
-      $Res Function(_$_AppointmentsOverviewLoading) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_AppointmentsOverviewLoading implements _AppointmentsOverviewLoading {
-  _$_AppointmentsOverviewLoading();
-
+abstract class _$$_AppointmentsOverviewStateCopyWith<$Res>
+    implements $AppointmentsOverviewStateCopyWith<$Res> {
+  factory _$$_AppointmentsOverviewStateCopyWith(
+          _$_AppointmentsOverviewState value,
+          $Res Function(_$_AppointmentsOverviewState) then) =
+      __$$_AppointmentsOverviewStateCopyWithImpl<$Res>;
   @override
-  String toString() {
-    return 'AppointmentsOverviewState.loading()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AppointmentsOverviewLoading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(
-            List<Appointment> appointments, int offset, bool hasReachedMax)
-        data,
-    required TResult Function() error,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(
-            List<Appointment> appointments, int offset, bool hasReachedMax)?
-        data,
-    TResult? Function()? error,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(
-            List<Appointment> appointments, int offset, bool hasReachedMax)?
-        data,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AppointmentsOverviewLoading value) loading,
-    required TResult Function(AppointmentsOverviewData value) data,
-    required TResult Function(_AppointmentsOverviewError value) error,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AppointmentsOverviewLoading value)? loading,
-    TResult? Function(AppointmentsOverviewData value)? data,
-    TResult? Function(_AppointmentsOverviewError value)? error,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AppointmentsOverviewLoading value)? loading,
-    TResult Function(AppointmentsOverviewData value)? data,
-    TResult Function(_AppointmentsOverviewError value)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AppointmentsOverviewLoading
-    implements AppointmentsOverviewState {
-  factory _AppointmentsOverviewLoading() = _$_AppointmentsOverviewLoading;
-}
-
-/// @nodoc
-abstract class _$$AppointmentsOverviewDataCopyWith<$Res> {
-  factory _$$AppointmentsOverviewDataCopyWith(_$AppointmentsOverviewData value,
-          $Res Function(_$AppointmentsOverviewData) then) =
-      __$$AppointmentsOverviewDataCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Appointment> appointments, int offset, bool hasReachedMax});
+  $Res call(
+      {List<Appointment> appointments,
+      bool hasReachedMax,
+      AppointmentsOverviewStatus status});
 }
 
 /// @nodoc
-class __$$AppointmentsOverviewDataCopyWithImpl<$Res>
+class __$$_AppointmentsOverviewStateCopyWithImpl<$Res>
     extends _$AppointmentsOverviewStateCopyWithImpl<$Res,
-        _$AppointmentsOverviewData>
-    implements _$$AppointmentsOverviewDataCopyWith<$Res> {
-  __$$AppointmentsOverviewDataCopyWithImpl(_$AppointmentsOverviewData _value,
-      $Res Function(_$AppointmentsOverviewData) _then)
+        _$_AppointmentsOverviewState>
+    implements _$$_AppointmentsOverviewStateCopyWith<$Res> {
+  __$$_AppointmentsOverviewStateCopyWithImpl(
+      _$_AppointmentsOverviewState _value,
+      $Res Function(_$_AppointmentsOverviewState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? appointments = null,
-    Object? offset = null,
     Object? hasReachedMax = null,
+    Object? status = null,
   }) {
-    return _then(_$AppointmentsOverviewData(
+    return _then(_$_AppointmentsOverviewState(
       appointments: null == appointments
           ? _value._appointments
           : appointments // ignore: cast_nullable_to_non_nullable
               as List<Appointment>,
-      offset: null == offset
-          ? _value.offset
-          : offset // ignore: cast_nullable_to_non_nullable
-              as int,
       hasReachedMax: null == hasReachedMax
           ? _value.hasReachedMax
           : hasReachedMax // ignore: cast_nullable_to_non_nullable
               as bool,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as AppointmentsOverviewStatus,
     ));
   }
 }
 
 /// @nodoc
 
-class _$AppointmentsOverviewData implements AppointmentsOverviewData {
-  _$AppointmentsOverviewData(
-      {required final List<Appointment> appointments,
-      this.offset = 0,
-      this.hasReachedMax = false})
+class _$_AppointmentsOverviewState implements _AppointmentsOverviewState {
+  _$_AppointmentsOverviewState(
+      {final List<Appointment> appointments = const [],
+      this.hasReachedMax = false,
+      required this.status})
       : _appointments = appointments;
 
   final List<Appointment> _appointments;
   @override
+  @JsonKey()
   List<Appointment> get appointments {
     if (_appointments is EqualUnmodifiableListView) return _appointments;
     // ignore: implicit_dynamic_type
@@ -267,246 +141,57 @@ class _$AppointmentsOverviewData implements AppointmentsOverviewData {
 
   @override
   @JsonKey()
-  final int offset;
-  @override
-  @JsonKey()
   final bool hasReachedMax;
+  @override
+  final AppointmentsOverviewStatus status;
 
   @override
   String toString() {
-    return 'AppointmentsOverviewState.data(appointments: $appointments, offset: $offset, hasReachedMax: $hasReachedMax)';
+    return 'AppointmentsOverviewState(appointments: $appointments, hasReachedMax: $hasReachedMax, status: $status)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AppointmentsOverviewData &&
+            other is _$_AppointmentsOverviewState &&
             const DeepCollectionEquality()
                 .equals(other._appointments, _appointments) &&
-            (identical(other.offset, offset) || other.offset == offset) &&
             (identical(other.hasReachedMax, hasReachedMax) ||
-                other.hasReachedMax == hasReachedMax));
+                other.hasReachedMax == hasReachedMax) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_appointments),
-      offset,
-      hasReachedMax);
+      hasReachedMax,
+      status);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AppointmentsOverviewDataCopyWith<_$AppointmentsOverviewData>
-      get copyWith =>
-          __$$AppointmentsOverviewDataCopyWithImpl<_$AppointmentsOverviewData>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(
-            List<Appointment> appointments, int offset, bool hasReachedMax)
-        data,
-    required TResult Function() error,
-  }) {
-    return data(appointments, offset, hasReachedMax);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(
-            List<Appointment> appointments, int offset, bool hasReachedMax)?
-        data,
-    TResult? Function()? error,
-  }) {
-    return data?.call(appointments, offset, hasReachedMax);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(
-            List<Appointment> appointments, int offset, bool hasReachedMax)?
-        data,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(appointments, offset, hasReachedMax);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AppointmentsOverviewLoading value) loading,
-    required TResult Function(AppointmentsOverviewData value) data,
-    required TResult Function(_AppointmentsOverviewError value) error,
-  }) {
-    return data(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AppointmentsOverviewLoading value)? loading,
-    TResult? Function(AppointmentsOverviewData value)? data,
-    TResult? Function(_AppointmentsOverviewError value)? error,
-  }) {
-    return data?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AppointmentsOverviewLoading value)? loading,
-    TResult Function(AppointmentsOverviewData value)? data,
-    TResult Function(_AppointmentsOverviewError value)? error,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(this);
-    }
-    return orElse();
-  }
+  _$$_AppointmentsOverviewStateCopyWith<_$_AppointmentsOverviewState>
+      get copyWith => __$$_AppointmentsOverviewStateCopyWithImpl<
+          _$_AppointmentsOverviewState>(this, _$identity);
 }
 
-abstract class AppointmentsOverviewData implements AppointmentsOverviewState {
-  factory AppointmentsOverviewData(
-      {required final List<Appointment> appointments,
-      final int offset,
-      final bool hasReachedMax}) = _$AppointmentsOverviewData;
+abstract class _AppointmentsOverviewState implements AppointmentsOverviewState {
+  factory _AppointmentsOverviewState(
+          {final List<Appointment> appointments,
+          final bool hasReachedMax,
+          required final AppointmentsOverviewStatus status}) =
+      _$_AppointmentsOverviewState;
 
+  @override
   List<Appointment> get appointments;
-  int get offset;
+  @override
   bool get hasReachedMax;
+  @override
+  AppointmentsOverviewStatus get status;
+  @override
   @JsonKey(ignore: true)
-  _$$AppointmentsOverviewDataCopyWith<_$AppointmentsOverviewData>
+  _$$_AppointmentsOverviewStateCopyWith<_$_AppointmentsOverviewState>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_AppointmentsOverviewErrorCopyWith<$Res> {
-  factory _$$_AppointmentsOverviewErrorCopyWith(
-          _$_AppointmentsOverviewError value,
-          $Res Function(_$_AppointmentsOverviewError) then) =
-      __$$_AppointmentsOverviewErrorCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_AppointmentsOverviewErrorCopyWithImpl<$Res>
-    extends _$AppointmentsOverviewStateCopyWithImpl<$Res,
-        _$_AppointmentsOverviewError>
-    implements _$$_AppointmentsOverviewErrorCopyWith<$Res> {
-  __$$_AppointmentsOverviewErrorCopyWithImpl(
-      _$_AppointmentsOverviewError _value,
-      $Res Function(_$_AppointmentsOverviewError) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_AppointmentsOverviewError implements _AppointmentsOverviewError {
-  _$_AppointmentsOverviewError();
-
-  @override
-  String toString() {
-    return 'AppointmentsOverviewState.error()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_AppointmentsOverviewError);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(
-            List<Appointment> appointments, int offset, bool hasReachedMax)
-        data,
-    required TResult Function() error,
-  }) {
-    return error();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function(
-            List<Appointment> appointments, int offset, bool hasReachedMax)?
-        data,
-    TResult? Function()? error,
-  }) {
-    return error?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(
-            List<Appointment> appointments, int offset, bool hasReachedMax)?
-        data,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AppointmentsOverviewLoading value) loading,
-    required TResult Function(AppointmentsOverviewData value) data,
-    required TResult Function(_AppointmentsOverviewError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AppointmentsOverviewLoading value)? loading,
-    TResult? Function(AppointmentsOverviewData value)? data,
-    TResult? Function(_AppointmentsOverviewError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AppointmentsOverviewLoading value)? loading,
-    TResult Function(AppointmentsOverviewData value)? data,
-    TResult Function(_AppointmentsOverviewError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AppointmentsOverviewError implements AppointmentsOverviewState {
-  factory _AppointmentsOverviewError() = _$_AppointmentsOverviewError;
 }
