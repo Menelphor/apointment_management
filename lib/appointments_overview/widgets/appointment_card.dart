@@ -1,7 +1,5 @@
 import 'package:appointment_management/appointment_detail/view/appointment_detail_page.dart';
 import 'package:appointment_management/appointments_overview/bloc/appointments_overview_bloc.dart';
-import 'package:appointment_management/appointments_overview/widgets/company_map_view.dart';
-import 'package:appointment_management/config/dimensions.dart';
 import 'package:appointment_management/models/appointment.dart';
 import 'package:appointment_management/utils/date_parsing_extension.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +26,7 @@ class AppointmentCard extends StatelessWidget {
             ),
           );
         },
-        child: Column(
-          children: [
-            _Map(appointment: appointment),
-            _Content(appointment: appointment),
-          ],
-        ),
+        child: _Content(appointment: appointment),
       ),
     );
   }
@@ -87,26 +80,6 @@ class _AppointmentDescription extends StatelessWidget {
         ),
         Text(appointment.company.address)
       ],
-    );
-  }
-}
-
-class _Map extends StatelessWidget {
-  const _Map({
-    Key? key,
-    required this.appointment,
-  }) : super(key: key);
-
-  final Appointment appointment;
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: Dimensions.cardRadius,
-      child: SizedBox(
-        height: 240,
-        child: CompanyMapView(company: appointment.company),
-      ),
     );
   }
 }

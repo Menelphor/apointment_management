@@ -1,12 +1,17 @@
+import 'dart:io';
+
 import 'package:appointment_management/appointment_detail/bloc/appointment_detail_bloc.dart';
 import 'package:appointment_management/appointment_detail/bloc/appointment_detail_event.dart';
 import 'package:appointment_management/config/dimensions.dart';
+import 'package:appointment_management/dependency_injection.dart';
 import 'package:appointment_management/models/appointment.dart';
 import 'package:appointment_management/utils/date_parsing_extension.dart';
 import 'package:appointment_management/widgets/gap.dart';
+import 'package:appointment_management/widgets/map_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppointmentDetailView extends StatelessWidget {
   const AppointmentDetailView({super.key, required this.appointment});
@@ -16,17 +21,71 @@ class AppointmentDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Card(
-          child: Padding(
-            padding: Dimensions.cardPadding,
-            child: _AppointmentDetails(appointment: appointment),
-          ),
-        ),
+        _AppointmentDetailCard(appointment: appointment),
         const _DetailButtons(),
       ],
     );
+  }
+}
+
+class _AppointmentDetailCard extends StatelessWidget {
+  const _AppointmentDetailCard({
+    Key? key,
+    required this.appointment,
+  }) : super(key: key);
+  final Appointment appointment;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<LatLng?>(
+      future: DependencyInjection.locationGeocoderService
+          .getCoordinates(appointment.company),
+      builder: (BuildContext context, AsyncSnapshot<LatLng?> snapshot) {
+        return Card(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              MapCard(coordinates: snapshot.data),
+              Padding(
+                padding: Dimensions.cardPadding.copyWith(bottom: 8),
+                child: _AppointmentDetails(appointment: appointment),
+              ),
+              Padding(
+                padding: Dimensions.cardPadding.copyWith(top: 8),
+                child: OutlinedButton(
+                  onPressed: snapshot.data == null
+                      ? null
+                      : () => openNavigation(context, snapshot.data!.latitude,
+                          snapshot.data!.longitude),
+                  child: const Text("Navigation Starten"),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  static Future<void> openNavigation(
+    BuildContext context,
+    double lat,
+    double lng,
+  ) async {
+    if (Platform.isAndroid) {
+      final url = 'https://www.google.com/maps/search/?api=1&query=$lat,$lng';
+      await launchUrl(
+        Uri.parse(url),
+        mode: LaunchMode.externalNonBrowserApplication,
+      );
+    } else {
+      final url = 'https://maps.apple.com/?q=$lat,$lng';
+      await launchUrl(
+        Uri.parse(url),
+        mode: LaunchMode.externalNonBrowserApplication,
+      );
+    }
   }
 }
 
