@@ -185,8 +185,8 @@ class __$$_CompanyCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Company implements _Company {
-  _$_Company(
+class _$_Company extends _Company {
+  const _$_Company(
       {required this.id,
       required this.name,
       required this.street,
@@ -194,7 +194,8 @@ class _$_Company implements _Company {
       required this.postCode,
       required this.city,
       required this.phoneNumber,
-      required this.contact});
+      required this.contact})
+      : super._();
 
   factory _$_Company.fromJson(Map<String, dynamic> json) =>
       _$$_CompanyFromJson(json);
@@ -258,8 +259,8 @@ class _$_Company implements _Company {
   }
 }
 
-abstract class _Company implements Company {
-  factory _Company(
+abstract class _Company extends Company {
+  const factory _Company(
       {required final String id,
       required final String name,
       required final String street,
@@ -268,6 +269,7 @@ abstract class _Company implements Company {
       required final String city,
       required final String phoneNumber,
       required final String contact}) = _$_Company;
+  const _Company._() : super._();
 
   factory _Company.fromJson(Map<String, dynamic> json) = _$_Company.fromJson;
 

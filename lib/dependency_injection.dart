@@ -1,4 +1,5 @@
 import 'package:appointment_management/service/appointment_service.dart';
+import 'package:appointment_management/service/location_geocoder_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:graphql/client.dart';
 
@@ -21,7 +22,12 @@ class DependencyInjection {
     GetIt.I.registerSingleton<AppointmentService>(
       AppointmentService(GetIt.I.get()),
     );
+
+    GetIt.I.registerSingleton<LocationGeocoderService>(
+      LocationGeocoderService(),
+    );
   }
 
   static AppointmentService get appointmentService => GetIt.I.get();
+  static LocationGeocoderService get locationGeocoderService => GetIt.I.get();
 }

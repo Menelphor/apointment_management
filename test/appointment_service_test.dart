@@ -22,4 +22,10 @@ void main() {
     expect(appointments, isNotNull);
     expect(appointments, isNotEmpty);
   });
+
+  test('getAllCompanies', () async {
+    final companies = await appointmentService.getCompanies();
+    expect(companies, isNotNull);
+    expect(companies, isNotEmpty);
+  });
 }

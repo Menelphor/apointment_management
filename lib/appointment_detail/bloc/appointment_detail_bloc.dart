@@ -19,7 +19,11 @@ class AppointmentDetailBloc
     on<SetAppointmentStateEvent>(_setAppointmentState);
     on<AddAdditionalInformationEvent>(_setAdditionalInformationText);
     on<SaveAppointment>(_saveAppointment);
+    on<ResetAppointment>(_resetAppointment);
   }
+
+  FutureOr<void> _resetAppointment(event, emit) =>
+      emit(AppointmentDetailState());
 
   FutureOr<void> _setAdditionalInformationText(event, emit) => emit(
         state.copyWith(comment: event.additionalInformation),

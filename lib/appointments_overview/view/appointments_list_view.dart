@@ -9,10 +9,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppointmentsListView extends StatefulWidget {
   const AppointmentsListView({
-    super.key,
+    Key? key,
     required this.state,
-  });
+  }) : super(key: key);
+
   final AppointmentsOverviewState state;
+
   @override
   State<AppointmentsListView> createState() => _AppointmentsListViewState();
 }
@@ -33,17 +35,14 @@ class _AppointmentsListViewState extends State<AppointmentsListView> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView(
       padding: Dimensions.screenPadding,
       controller: _scrollController,
-      itemCount: widget.state.hasReachedMax
-          ? widget.state.appointments.length
-          : widget.state.appointments.length + 1,
-      itemBuilder: (BuildContext context, int index) {
-        return index >= widget.state.appointments.length
-            ? const BottomLoader()
-            : AppointmentCard(appointment: widget.state.appointments[index]);
-      },
+      children: [
+        for (final appointment in widget.state.appointments)
+          AppointmentCard(appointment: appointment),
+        if (!widget.state.hasReachedMax) const BottomLoader()
+      ],
     );
   }
 

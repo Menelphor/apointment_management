@@ -1,3 +1,5 @@
+import 'package:appointment_management/appointments_overview/bloc/appointments_overview_bloc.dart';
+import 'package:appointment_management/appointments_overview/bloc/appointments_overview_event.dart';
 import 'package:appointment_management/appointments_overview/bloc/appointments_overview_state.dart';
 import 'package:appointment_management/appointments_overview/view/appointments_list_view.dart';
 import 'package:appointment_management/settings/view/settings_view.dart';
@@ -5,9 +7,6 @@ import 'package:appointment_management/settings/view/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-
-import '../bloc/appointments_overview_bloc.dart';
-import '../bloc/appointments_overview_event.dart';
 
 class AppointmentsOverviewPage extends StatelessWidget {
   const AppointmentsOverviewPage({super.key});
@@ -41,9 +40,9 @@ class _AppointmentsOverviewPage extends StatelessWidget {
         builder: (context, state) {
           switch (state.status) {
             case AppointmentsOverviewStatus.loading:
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             case AppointmentsOverviewStatus.error:
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             case AppointmentsOverviewStatus.data:
               return AppointmentsListView(state: state);
           }

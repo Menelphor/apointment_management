@@ -25,6 +25,7 @@ mixin _$AppointmentDetailEvent {
     required TResult Function(String additionalInformation)
         addAdditionalInformation,
     required TResult Function() save,
+    required TResult Function() reset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +35,7 @@ mixin _$AppointmentDetailEvent {
     TResult? Function(AppointmentState? appointmentState)? setAppointmentState,
     TResult? Function(String additionalInformation)? addAdditionalInformation,
     TResult? Function()? save,
+    TResult? Function()? reset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,6 +45,7 @@ mixin _$AppointmentDetailEvent {
     TResult Function(AppointmentState? appointmentState)? setAppointmentState,
     TResult Function(String additionalInformation)? addAdditionalInformation,
     TResult Function()? save,
+    TResult Function()? reset,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +58,7 @@ mixin _$AppointmentDetailEvent {
     required TResult Function(AddAdditionalInformationEvent value)
         addAdditionalInformation,
     required TResult Function(SaveAppointment value) save,
+    required TResult Function(ResetAppointment value) reset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +69,7 @@ mixin _$AppointmentDetailEvent {
     TResult? Function(AddAdditionalInformationEvent value)?
         addAdditionalInformation,
     TResult? Function(SaveAppointment value)? save,
+    TResult? Function(ResetAppointment value)? reset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +80,7 @@ mixin _$AppointmentDetailEvent {
     TResult Function(AddAdditionalInformationEvent value)?
         addAdditionalInformation,
     TResult Function(SaveAppointment value)? save,
+    TResult Function(ResetAppointment value)? reset,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -144,6 +150,7 @@ class _$CancelAppointmentEvent implements CancelAppointmentEvent {
     required TResult Function(String additionalInformation)
         addAdditionalInformation,
     required TResult Function() save,
+    required TResult Function() reset,
   }) {
     return cancel();
   }
@@ -156,6 +163,7 @@ class _$CancelAppointmentEvent implements CancelAppointmentEvent {
     TResult? Function(AppointmentState? appointmentState)? setAppointmentState,
     TResult? Function(String additionalInformation)? addAdditionalInformation,
     TResult? Function()? save,
+    TResult? Function()? reset,
   }) {
     return cancel?.call();
   }
@@ -168,6 +176,7 @@ class _$CancelAppointmentEvent implements CancelAppointmentEvent {
     TResult Function(AppointmentState? appointmentState)? setAppointmentState,
     TResult Function(String additionalInformation)? addAdditionalInformation,
     TResult Function()? save,
+    TResult Function()? reset,
     required TResult orElse(),
   }) {
     if (cancel != null) {
@@ -186,6 +195,7 @@ class _$CancelAppointmentEvent implements CancelAppointmentEvent {
     required TResult Function(AddAdditionalInformationEvent value)
         addAdditionalInformation,
     required TResult Function(SaveAppointment value) save,
+    required TResult Function(ResetAppointment value) reset,
   }) {
     return cancel(this);
   }
@@ -199,6 +209,7 @@ class _$CancelAppointmentEvent implements CancelAppointmentEvent {
     TResult? Function(AddAdditionalInformationEvent value)?
         addAdditionalInformation,
     TResult? Function(SaveAppointment value)? save,
+    TResult? Function(ResetAppointment value)? reset,
   }) {
     return cancel?.call(this);
   }
@@ -212,6 +223,7 @@ class _$CancelAppointmentEvent implements CancelAppointmentEvent {
     TResult Function(AddAdditionalInformationEvent value)?
         addAdditionalInformation,
     TResult Function(SaveAppointment value)? save,
+    TResult Function(ResetAppointment value)? reset,
     required TResult orElse(),
   }) {
     if (cancel != null) {
@@ -272,6 +284,7 @@ class _$CompleteAppointmentEvent implements CompleteAppointmentEvent {
     required TResult Function(String additionalInformation)
         addAdditionalInformation,
     required TResult Function() save,
+    required TResult Function() reset,
   }) {
     return complete();
   }
@@ -284,6 +297,7 @@ class _$CompleteAppointmentEvent implements CompleteAppointmentEvent {
     TResult? Function(AppointmentState? appointmentState)? setAppointmentState,
     TResult? Function(String additionalInformation)? addAdditionalInformation,
     TResult? Function()? save,
+    TResult? Function()? reset,
   }) {
     return complete?.call();
   }
@@ -296,6 +310,7 @@ class _$CompleteAppointmentEvent implements CompleteAppointmentEvent {
     TResult Function(AppointmentState? appointmentState)? setAppointmentState,
     TResult Function(String additionalInformation)? addAdditionalInformation,
     TResult Function()? save,
+    TResult Function()? reset,
     required TResult orElse(),
   }) {
     if (complete != null) {
@@ -314,6 +329,7 @@ class _$CompleteAppointmentEvent implements CompleteAppointmentEvent {
     required TResult Function(AddAdditionalInformationEvent value)
         addAdditionalInformation,
     required TResult Function(SaveAppointment value) save,
+    required TResult Function(ResetAppointment value) reset,
   }) {
     return complete(this);
   }
@@ -327,6 +343,7 @@ class _$CompleteAppointmentEvent implements CompleteAppointmentEvent {
     TResult? Function(AddAdditionalInformationEvent value)?
         addAdditionalInformation,
     TResult? Function(SaveAppointment value)? save,
+    TResult? Function(ResetAppointment value)? reset,
   }) {
     return complete?.call(this);
   }
@@ -340,6 +357,7 @@ class _$CompleteAppointmentEvent implements CompleteAppointmentEvent {
     TResult Function(AddAdditionalInformationEvent value)?
         addAdditionalInformation,
     TResult Function(SaveAppointment value)? save,
+    TResult Function(ResetAppointment value)? reset,
     required TResult orElse(),
   }) {
     if (complete != null) {
@@ -428,6 +446,7 @@ class _$SetAppointmentStateEvent implements SetAppointmentStateEvent {
     required TResult Function(String additionalInformation)
         addAdditionalInformation,
     required TResult Function() save,
+    required TResult Function() reset,
   }) {
     return setAppointmentState(appointmentState);
   }
@@ -440,6 +459,7 @@ class _$SetAppointmentStateEvent implements SetAppointmentStateEvent {
     TResult? Function(AppointmentState? appointmentState)? setAppointmentState,
     TResult? Function(String additionalInformation)? addAdditionalInformation,
     TResult? Function()? save,
+    TResult? Function()? reset,
   }) {
     return setAppointmentState?.call(appointmentState);
   }
@@ -452,6 +472,7 @@ class _$SetAppointmentStateEvent implements SetAppointmentStateEvent {
     TResult Function(AppointmentState? appointmentState)? setAppointmentState,
     TResult Function(String additionalInformation)? addAdditionalInformation,
     TResult Function()? save,
+    TResult Function()? reset,
     required TResult orElse(),
   }) {
     if (setAppointmentState != null) {
@@ -470,6 +491,7 @@ class _$SetAppointmentStateEvent implements SetAppointmentStateEvent {
     required TResult Function(AddAdditionalInformationEvent value)
         addAdditionalInformation,
     required TResult Function(SaveAppointment value) save,
+    required TResult Function(ResetAppointment value) reset,
   }) {
     return setAppointmentState(this);
   }
@@ -483,6 +505,7 @@ class _$SetAppointmentStateEvent implements SetAppointmentStateEvent {
     TResult? Function(AddAdditionalInformationEvent value)?
         addAdditionalInformation,
     TResult? Function(SaveAppointment value)? save,
+    TResult? Function(ResetAppointment value)? reset,
   }) {
     return setAppointmentState?.call(this);
   }
@@ -496,6 +519,7 @@ class _$SetAppointmentStateEvent implements SetAppointmentStateEvent {
     TResult Function(AddAdditionalInformationEvent value)?
         addAdditionalInformation,
     TResult Function(SaveAppointment value)? save,
+    TResult Function(ResetAppointment value)? reset,
     required TResult orElse(),
   }) {
     if (setAppointmentState != null) {
@@ -591,6 +615,7 @@ class _$AddAdditionalInformationEvent implements AddAdditionalInformationEvent {
     required TResult Function(String additionalInformation)
         addAdditionalInformation,
     required TResult Function() save,
+    required TResult Function() reset,
   }) {
     return addAdditionalInformation(additionalInformation);
   }
@@ -603,6 +628,7 @@ class _$AddAdditionalInformationEvent implements AddAdditionalInformationEvent {
     TResult? Function(AppointmentState? appointmentState)? setAppointmentState,
     TResult? Function(String additionalInformation)? addAdditionalInformation,
     TResult? Function()? save,
+    TResult? Function()? reset,
   }) {
     return addAdditionalInformation?.call(additionalInformation);
   }
@@ -615,6 +641,7 @@ class _$AddAdditionalInformationEvent implements AddAdditionalInformationEvent {
     TResult Function(AppointmentState? appointmentState)? setAppointmentState,
     TResult Function(String additionalInformation)? addAdditionalInformation,
     TResult Function()? save,
+    TResult Function()? reset,
     required TResult orElse(),
   }) {
     if (addAdditionalInformation != null) {
@@ -633,6 +660,7 @@ class _$AddAdditionalInformationEvent implements AddAdditionalInformationEvent {
     required TResult Function(AddAdditionalInformationEvent value)
         addAdditionalInformation,
     required TResult Function(SaveAppointment value) save,
+    required TResult Function(ResetAppointment value) reset,
   }) {
     return addAdditionalInformation(this);
   }
@@ -646,6 +674,7 @@ class _$AddAdditionalInformationEvent implements AddAdditionalInformationEvent {
     TResult? Function(AddAdditionalInformationEvent value)?
         addAdditionalInformation,
     TResult? Function(SaveAppointment value)? save,
+    TResult? Function(ResetAppointment value)? reset,
   }) {
     return addAdditionalInformation?.call(this);
   }
@@ -659,6 +688,7 @@ class _$AddAdditionalInformationEvent implements AddAdditionalInformationEvent {
     TResult Function(AddAdditionalInformationEvent value)?
         addAdditionalInformation,
     TResult Function(SaveAppointment value)? save,
+    TResult Function(ResetAppointment value)? reset,
     required TResult orElse(),
   }) {
     if (addAdditionalInformation != null) {
@@ -723,6 +753,7 @@ class _$SaveAppointment implements SaveAppointment {
     required TResult Function(String additionalInformation)
         addAdditionalInformation,
     required TResult Function() save,
+    required TResult Function() reset,
   }) {
     return save();
   }
@@ -735,6 +766,7 @@ class _$SaveAppointment implements SaveAppointment {
     TResult? Function(AppointmentState? appointmentState)? setAppointmentState,
     TResult? Function(String additionalInformation)? addAdditionalInformation,
     TResult? Function()? save,
+    TResult? Function()? reset,
   }) {
     return save?.call();
   }
@@ -747,6 +779,7 @@ class _$SaveAppointment implements SaveAppointment {
     TResult Function(AppointmentState? appointmentState)? setAppointmentState,
     TResult Function(String additionalInformation)? addAdditionalInformation,
     TResult Function()? save,
+    TResult Function()? reset,
     required TResult orElse(),
   }) {
     if (save != null) {
@@ -765,6 +798,7 @@ class _$SaveAppointment implements SaveAppointment {
     required TResult Function(AddAdditionalInformationEvent value)
         addAdditionalInformation,
     required TResult Function(SaveAppointment value) save,
+    required TResult Function(ResetAppointment value) reset,
   }) {
     return save(this);
   }
@@ -778,6 +812,7 @@ class _$SaveAppointment implements SaveAppointment {
     TResult? Function(AddAdditionalInformationEvent value)?
         addAdditionalInformation,
     TResult? Function(SaveAppointment value)? save,
+    TResult? Function(ResetAppointment value)? reset,
   }) {
     return save?.call(this);
   }
@@ -791,6 +826,7 @@ class _$SaveAppointment implements SaveAppointment {
     TResult Function(AddAdditionalInformationEvent value)?
         addAdditionalInformation,
     TResult Function(SaveAppointment value)? save,
+    TResult Function(ResetAppointment value)? reset,
     required TResult orElse(),
   }) {
     if (save != null) {
@@ -802,4 +838,136 @@ class _$SaveAppointment implements SaveAppointment {
 
 abstract class SaveAppointment implements AppointmentDetailEvent {
   factory SaveAppointment() = _$SaveAppointment;
+}
+
+/// @nodoc
+abstract class _$$ResetAppointmentCopyWith<$Res> {
+  factory _$$ResetAppointmentCopyWith(
+          _$ResetAppointment value, $Res Function(_$ResetAppointment) then) =
+      __$$ResetAppointmentCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResetAppointmentCopyWithImpl<$Res>
+    extends _$AppointmentDetailEventCopyWithImpl<$Res, _$ResetAppointment>
+    implements _$$ResetAppointmentCopyWith<$Res> {
+  __$$ResetAppointmentCopyWithImpl(
+      _$ResetAppointment _value, $Res Function(_$ResetAppointment) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ResetAppointment implements ResetAppointment {
+  _$ResetAppointment();
+
+  @override
+  String toString() {
+    return 'AppointmentDetailEvent.reset()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ResetAppointment);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() cancel,
+    required TResult Function() complete,
+    required TResult Function(AppointmentState? appointmentState)
+        setAppointmentState,
+    required TResult Function(String additionalInformation)
+        addAdditionalInformation,
+    required TResult Function() save,
+    required TResult Function() reset,
+  }) {
+    return reset();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? cancel,
+    TResult? Function()? complete,
+    TResult? Function(AppointmentState? appointmentState)? setAppointmentState,
+    TResult? Function(String additionalInformation)? addAdditionalInformation,
+    TResult? Function()? save,
+    TResult? Function()? reset,
+  }) {
+    return reset?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? cancel,
+    TResult Function()? complete,
+    TResult Function(AppointmentState? appointmentState)? setAppointmentState,
+    TResult Function(String additionalInformation)? addAdditionalInformation,
+    TResult Function()? save,
+    TResult Function()? reset,
+    required TResult orElse(),
+  }) {
+    if (reset != null) {
+      return reset();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CancelAppointmentEvent value) cancel,
+    required TResult Function(CompleteAppointmentEvent value) complete,
+    required TResult Function(SetAppointmentStateEvent value)
+        setAppointmentState,
+    required TResult Function(AddAdditionalInformationEvent value)
+        addAdditionalInformation,
+    required TResult Function(SaveAppointment value) save,
+    required TResult Function(ResetAppointment value) reset,
+  }) {
+    return reset(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CancelAppointmentEvent value)? cancel,
+    TResult? Function(CompleteAppointmentEvent value)? complete,
+    TResult? Function(SetAppointmentStateEvent value)? setAppointmentState,
+    TResult? Function(AddAdditionalInformationEvent value)?
+        addAdditionalInformation,
+    TResult? Function(SaveAppointment value)? save,
+    TResult? Function(ResetAppointment value)? reset,
+  }) {
+    return reset?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CancelAppointmentEvent value)? cancel,
+    TResult Function(CompleteAppointmentEvent value)? complete,
+    TResult Function(SetAppointmentStateEvent value)? setAppointmentState,
+    TResult Function(AddAdditionalInformationEvent value)?
+        addAdditionalInformation,
+    TResult Function(SaveAppointment value)? save,
+    TResult Function(ResetAppointment value)? reset,
+    required TResult orElse(),
+  }) {
+    if (reset != null) {
+      return reset(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ResetAppointment implements AppointmentDetailEvent {
+  factory ResetAppointment() = _$ResetAppointment;
 }

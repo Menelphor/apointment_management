@@ -18,4 +18,7 @@ class AppointmentDetailEvent with _$AppointmentDetailEvent {
   ) = AddAdditionalInformationEvent;
 
   factory AppointmentDetailEvent.save() = SaveAppointment;
+
+
+  factory AppointmentDetailEvent.reset() = ResetAppointment;
 }

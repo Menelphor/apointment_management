@@ -2,6 +2,7 @@ import 'package:appointment_management/appointment_detail/bloc/appointment_detai
 import 'package:appointment_management/appointment_detail/bloc/appointment_detail_event.dart';
 import 'package:appointment_management/appointment_detail/bloc/appointment_detail_state.dart';
 import 'package:appointment_management/appointment_detail/widgets/additional_information_text_field.dart';
+import 'package:appointment_management/appointment_detail/widgets/bottom_sheet_layout.dart';
 import 'package:appointment_management/appointment_detail/widgets/save_appointment_button.dart';
 import 'package:appointment_management/models/appointment_state.dart';
 import 'package:flutter/material.dart';
@@ -12,12 +13,12 @@ class AppointmentCancelView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+    return const BottomSheetLayout(
+      text: "Termin absagen",
+      children: [
         _CancelAppointmentRadio(),
         AdditionalInformationTextField(),
-        SaveAppointmentButton(text: "Termin absagen"),
+        SaveAppointmentButton(),
       ],
     );
   }
@@ -35,12 +36,14 @@ class _CancelAppointmentRadio extends StatelessWidget {
         return Column(
           children: [
             RadioListTile(
+              contentPadding: EdgeInsets.zero,
               value: AppointmentState.cancelledByCustomer,
               groupValue: state.appointmentState,
               title: const Text("Kunde hat abgesagt"),
               onChanged: (value) => _setAppointmentState(context, value),
             ),
             RadioListTile(
+              contentPadding: EdgeInsets.zero,
               value: AppointmentState.cancelledByUser,
               groupValue: state.appointmentState,
               title: const Text("wir haben abgesagt"),

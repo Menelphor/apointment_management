@@ -4,6 +4,7 @@ import 'package:appointment_management/settings/bloc/settings_cubit.dart';
 import 'package:appointment_management/config/dimensions.dart';
 import 'package:appointment_management/settings/bloc/settings_state.dart';
 import 'package:appointment_management/utils/show_loading_dialog.dart';
+import 'package:appointment_management/widgets/gap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,10 +29,12 @@ class SettingsView extends StatelessWidget {
         automaticallyImplyLeading: true,
       ),
       body: Padding(
-        padding: Dimensions.screenPadding.copyWith(left: 0, right: 0),
+        padding: Dimensions.screenPadding,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: const [
-            _SetAppThemeSwitchTile(),
+            _AppThemeRow(),
+            Gap(),
             _AddNewAppointmentsTile(),
           ],
         ),
@@ -48,7 +51,7 @@ class _AddNewAppointmentsTile extends StatelessWidget {
     return BlocListener<SettingsCubit, SettingsState>(
       listener: handleAddAppointments,
       child: ListTile(
-        contentPadding: Dimensions.screenPadding,
+        contentPadding: EdgeInsets.zero,
         title: const Text('6 Neue Termine im Backend erstellen'),
         onTap: () => addNewAppointments(context),
       ),
@@ -87,18 +90,40 @@ class _AddNewAppointmentsTile extends StatelessWidget {
   }
 }
 
-class _SetAppThemeSwitchTile extends StatelessWidget {
-  const _SetAppThemeSwitchTile({Key? key}) : super(key: key);
+class _AppThemeRow extends StatelessWidget {
+  const _AppThemeRow({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          "Theme Mode:",
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        const _ChangeAppThemeButton(),
+      ],
+    );
+  }
+}
+
+class _ChangeAppThemeButton extends StatelessWidget {
+  const _ChangeAppThemeButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (BuildContext context, state) {
-        return SwitchListTile(
-          contentPadding: Dimensions.screenPadding,
-          title: const Text('Theme'),
-          value: state.darkTheme,
-          onChanged: context.read<SettingsCubit>().setAppTheme,
+        if (state.darkTheme) {
+          return IconButton(
+            onPressed: () => context.read<SettingsCubit>().setAppTheme(false),
+            icon: const Icon(Icons.light_mode),
+          );
+        }
+        return IconButton(
+          onPressed: () => context.read<SettingsCubit>().setAppTheme(true),
+          icon: const Icon(Icons.dark_mode),
         );
       },
     );
