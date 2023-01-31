@@ -33,7 +33,7 @@ class MyMaterialApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) => MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Appointment Management',
         themeMode: state.darkTheme ? ThemeMode.dark : ThemeMode.light,
         darkTheme: darkTheme,
         theme: lightTheme,

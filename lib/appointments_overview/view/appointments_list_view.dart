@@ -38,13 +38,15 @@ class _AppointmentsListViewState extends State<AppointmentsListView> {
     return ListView.builder(
       padding: Dimensions.screenPadding,
       controller: _scrollController,
-      itemCount: widget.state.hasReachedMax
-          ? widget.state.appointments.length
-          : widget.state.appointments.length + 1,
+      itemCount: widget.state.appointments.length + 1,
       itemBuilder: (BuildContext context, int index) {
-        return index >= widget.state.appointments.length
-            ? const BottomLoader()
-            : AppointmentCard(appointment: widget.state.appointments[index]);
+        return index < widget.state.appointments.length
+            ? AppointmentCard(appointment: widget.state.appointments[index])
+            : SafeArea(
+                child: widget.state.hasReachedMax
+                    ? Container()
+                    : const BottomLoader(),
+              );
       },
     );
   }

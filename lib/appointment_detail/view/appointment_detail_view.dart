@@ -19,12 +19,25 @@ class AppointmentDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        _AppointmentDetailCard(appointment: appointment),
-        const _DetailButtons(),
-      ],
+    return LayoutBuilder(
+      builder: (context, viewport) {
+        return SingleChildScrollView(
+          child: Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: viewport.maxHeight),
+              child: SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _AppointmentDetailCard(appointment: appointment),
+                    const _DetailButtons(),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -73,19 +86,11 @@ class _AppointmentDetailCard extends StatelessWidget {
     double lat,
     double lng,
   ) async {
-    if (Platform.isAndroid) {
-      final url = 'https://www.google.com/maps/search/?api=1&query=$lat,$lng';
-      await launchUrl(
-        Uri.parse(url),
-        mode: LaunchMode.externalNonBrowserApplication,
-      );
-    } else {
-      final url = 'https://maps.apple.com/?q=$lat,$lng';
-      await launchUrl(
-        Uri.parse(url),
-        mode: LaunchMode.externalNonBrowserApplication,
-      );
-    }
+    final url = 'https://www.google.com/maps/search/?api=1&query=$lat,$lng';
+    await launchUrl(
+      Uri.parse(url),
+      mode: LaunchMode.externalApplication,
+    );
   }
 }
 
