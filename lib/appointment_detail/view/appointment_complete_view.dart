@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppointmentCompleteView extends StatelessWidget {
-  const AppointmentCompleteView({super.key});
+  const AppointmentCompleteView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

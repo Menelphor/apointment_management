@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 class AppointmentsOverviewPage extends StatelessWidget {
-  const AppointmentsOverviewPage({super.key});
+  const AppointmentsOverviewPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,18 +1,20 @@
 import 'package:appointment_management/appointment_detail/bloc/appointment_detail_bloc.dart';
 import 'package:appointment_management/appointment_detail/bloc/appointment_detail_event.dart';
 import 'package:appointment_management/config/dimensions.dart';
-import 'package:appointment_management/dependency_injection.dart';
 import 'package:appointment_management/models/appointment.dart';
 import 'package:appointment_management/utils/date_parsing_extension.dart';
 import 'package:appointment_management/widgets/gap.dart';
 import 'package:appointment_management/widgets/map_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AppointmentDetailView extends StatelessWidget {
-  const AppointmentDetailView({super.key, required this.appointment});
+  const AppointmentDetailView({
+    Key? key,
+    required this.appointment,
+  }) : super(key: key);
+
   final Appointment appointment;
 
   @override
@@ -45,46 +47,40 @@ class _AppointmentDetailCard extends StatelessWidget {
     Key? key,
     required this.appointment,
   }) : super(key: key);
+
   final Appointment appointment;
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<LatLng?>(
-      future: DependencyInjection.locationGeocoderService
-          .getCoordinates(appointment.company),
-      builder: (BuildContext context, AsyncSnapshot<LatLng?> snapshot) {
-        return Card(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              MapCard(coordinates: snapshot.data),
-              Padding(
-                padding: Dimensions.cardPadding.copyWith(bottom: 8),
-                child: _AppointmentDetails(appointment: appointment),
-              ),
-              Padding(
-                padding: Dimensions.cardPadding.copyWith(top: 8),
-                child: OutlinedButton(
-                  onPressed: snapshot.data == null
-                      ? null
-                      : () => openNavigation(context, snapshot.data!.latitude,
-                          snapshot.data!.longitude),
-                  child: const Text("Navigation Starten"),
-                ),
-              ),
-            ],
+    return Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          MapCard(company: appointment.company),
+          Padding(
+            padding: Dimensions.cardPadding.copyWith(bottom: 8),
+            child: _AppointmentDetails(appointment: appointment),
           ),
-        );
-      },
+          Padding(
+            padding: Dimensions.cardPadding.copyWith(top: 8),
+            child: OutlinedButton(
+              onPressed: () => openNavigation(
+                context,
+                appointment.company.address,
+              ),
+              child: const Text("Navigation Starten"),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   static Future<void> openNavigation(
     BuildContext context,
-    double lat,
-    double lng,
+    String address,
   ) async {
-    final url = 'https://www.google.com/maps/search/?api=1&query=$lat,$lng';
+    final url = 'https://www.google.com/maps/search/?api=1&query=$address';
     await launchUrl(
       Uri.parse(url),
       mode: LaunchMode.externalApplication,
@@ -119,9 +115,13 @@ class _DetailButtons extends StatelessWidget {
 }
 
 class _AppointmentDetails extends StatelessWidget {
-  const _AppointmentDetails({Key? key, required this.appointment})
-      : super(key: key);
+  const _AppointmentDetails({
+    Key? key,
+    required this.appointment,
+  }) : super(key: key);
+
   final Appointment appointment;
+
   @override
   Widget build(BuildContext context) {
     return Column(

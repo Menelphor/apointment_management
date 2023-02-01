@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SaveAppointmentButton extends StatelessWidget {
-  const SaveAppointmentButton({super.key});
+  const SaveAppointmentButton({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppointmentDetailBloc, AppointmentDetailState>(

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppointmentCancelView extends StatelessWidget {
-  const AppointmentCancelView({super.key});
+  const AppointmentCancelView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
