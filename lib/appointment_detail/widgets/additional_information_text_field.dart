@@ -3,7 +3,6 @@ import 'package:appointment_management/appointment_detail/bloc/appointment_detai
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class AdditionalInformationTextField extends StatelessWidget {
   const AdditionalInformationTextField({super.key});
 

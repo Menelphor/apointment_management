@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SettingsState {
-  bool get darkTheme => throw _privateConstructorUsedError;
+  ThemeMode get themeMode => throw _privateConstructorUsedError;
   AddNewAppointmentsState get addNewAppointmentsState =>
       throw _privateConstructorUsedError;
 
@@ -31,7 +31,8 @@ abstract class $SettingsStateCopyWith<$Res> {
           SettingsState value, $Res Function(SettingsState) then) =
       _$SettingsStateCopyWithImpl<$Res, SettingsState>;
   @useResult
-  $Res call({bool darkTheme, AddNewAppointmentsState addNewAppointmentsState});
+  $Res call(
+      {ThemeMode themeMode, AddNewAppointmentsState addNewAppointmentsState});
 }
 
 /// @nodoc
@@ -47,14 +48,14 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? darkTheme = null,
+    Object? themeMode = null,
     Object? addNewAppointmentsState = null,
   }) {
     return _then(_value.copyWith(
-      darkTheme: null == darkTheme
-          ? _value.darkTheme
-          : darkTheme // ignore: cast_nullable_to_non_nullable
-              as bool,
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
       addNewAppointmentsState: null == addNewAppointmentsState
           ? _value.addNewAppointmentsState
           : addNewAppointmentsState // ignore: cast_nullable_to_non_nullable
@@ -71,7 +72,8 @@ abstract class _$$_SettingsStateCopyWith<$Res>
       __$$_SettingsStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool darkTheme, AddNewAppointmentsState addNewAppointmentsState});
+  $Res call(
+      {ThemeMode themeMode, AddNewAppointmentsState addNewAppointmentsState});
 }
 
 /// @nodoc
@@ -85,14 +87,14 @@ class __$$_SettingsStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? darkTheme = null,
+    Object? themeMode = null,
     Object? addNewAppointmentsState = null,
   }) {
     return _then(_$_SettingsState(
-      darkTheme: null == darkTheme
-          ? _value.darkTheme
-          : darkTheme // ignore: cast_nullable_to_non_nullable
-              as bool,
+      themeMode: null == themeMode
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
       addNewAppointmentsState: null == addNewAppointmentsState
           ? _value.addNewAppointmentsState
           : addNewAppointmentsState // ignore: cast_nullable_to_non_nullable
@@ -105,18 +107,19 @@ class __$$_SettingsStateCopyWithImpl<$Res>
 
 class _$_SettingsState implements _SettingsState {
   _$_SettingsState(
-      {required this.darkTheme,
+      {this.themeMode = ThemeMode.system,
       this.addNewAppointmentsState = AddNewAppointmentsState.none});
 
   @override
-  final bool darkTheme;
+  @JsonKey()
+  final ThemeMode themeMode;
   @override
   @JsonKey()
   final AddNewAppointmentsState addNewAppointmentsState;
 
   @override
   String toString() {
-    return 'SettingsState(darkTheme: $darkTheme, addNewAppointmentsState: $addNewAppointmentsState)';
+    return 'SettingsState(themeMode: $themeMode, addNewAppointmentsState: $addNewAppointmentsState)';
   }
 
   @override
@@ -124,8 +127,8 @@ class _$_SettingsState implements _SettingsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SettingsState &&
-            (identical(other.darkTheme, darkTheme) ||
-                other.darkTheme == darkTheme) &&
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode) &&
             (identical(
                     other.addNewAppointmentsState, addNewAppointmentsState) ||
                 other.addNewAppointmentsState == addNewAppointmentsState));
@@ -133,7 +136,7 @@ class _$_SettingsState implements _SettingsState {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, darkTheme, addNewAppointmentsState);
+      Object.hash(runtimeType, themeMode, addNewAppointmentsState);
 
   @JsonKey(ignore: true)
   @override
@@ -144,12 +147,12 @@ class _$_SettingsState implements _SettingsState {
 
 abstract class _SettingsState implements SettingsState {
   factory _SettingsState(
-          {required final bool darkTheme,
+          {final ThemeMode themeMode,
           final AddNewAppointmentsState addNewAppointmentsState}) =
       _$_SettingsState;
 
   @override
-  bool get darkTheme;
+  ThemeMode get themeMode;
   @override
   AddNewAppointmentsState get addNewAppointmentsState;
   @override

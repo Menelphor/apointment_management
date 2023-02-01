@@ -19,6 +19,5 @@ class AppointmentDetailEvent with _$AppointmentDetailEvent {
 
   factory AppointmentDetailEvent.save() = SaveAppointment;
 
-
   factory AppointmentDetailEvent.reset() = ResetAppointment;
 }

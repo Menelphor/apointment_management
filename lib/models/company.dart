@@ -6,7 +6,7 @@ part 'company.g.dart';
 @freezed
 class Company with _$Company {
   const Company._();
-  const factory  Company({
+  const factory Company({
     required String id,
     required String name,
     required String street,

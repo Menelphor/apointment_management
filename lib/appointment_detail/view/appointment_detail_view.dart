@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:appointment_management/appointment_detail/bloc/appointment_detail_bloc.dart';
 import 'package:appointment_management/appointment_detail/bloc/appointment_detail_event.dart';
 import 'package:appointment_management/config/dimensions.dart';
@@ -102,7 +100,7 @@ class _DetailButtons extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        ElevatedButton(
+        FilledButton(
           onPressed: () => context
               .read<AppointmentDetailBloc>()
               .add(AppointmentDetailEvent.complete()),

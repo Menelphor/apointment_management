@@ -9,7 +9,7 @@ class SaveAppointmentButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppointmentDetailBloc, AppointmentDetailState>(
-      builder: (context, state) => ElevatedButton(
+      builder: (context, state) => FilledButton(
         onPressed: state.appointmentState == null
             ? null
             : () => context

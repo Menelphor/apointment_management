@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:appointment_management/service/appointment_service.dart';
 import 'package:appointment_management/settings/bloc/settings_state.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
-  SettingsCubit(this.appointmentService)
-      : super(SettingsState(darkTheme: false));
+  SettingsCubit(this.appointmentService) : super(SettingsState());
 
   final AppointmentService appointmentService;
 
@@ -34,5 +34,5 @@ class SettingsCubit extends Cubit<SettingsState> {
     );
   }
 
-  void setAppTheme(bool value) => emit(SettingsState(darkTheme: value));
+  void setAppTheme(ThemeMode value) => emit(SettingsState(themeMode: value));
 }

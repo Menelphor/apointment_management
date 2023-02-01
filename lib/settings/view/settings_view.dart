@@ -115,17 +115,24 @@ class _ChangeAppThemeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (BuildContext context, state) {
-        if (state.darkTheme) {
+        if (_themeIsDark(state, context)) {
           return IconButton(
-            onPressed: () => context.read<SettingsCubit>().setAppTheme(false),
+            onPressed: () =>
+                context.read<SettingsCubit>().setAppTheme(ThemeMode.light),
             icon: const Icon(Icons.light_mode),
           );
         }
         return IconButton(
-          onPressed: () => context.read<SettingsCubit>().setAppTheme(true),
+          onPressed: () =>
+              context.read<SettingsCubit>().setAppTheme(ThemeMode.dark),
           icon: const Icon(Icons.dark_mode),
         );
       },
     );
   }
+
+  bool _themeIsDark(SettingsState state, BuildContext context) =>
+      state.themeMode == ThemeMode.dark ||
+      state.themeMode == ThemeMode.system &&
+          Theme.of(context).brightness == Brightness.dark;
 }
